@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 700px;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 5px;
+}
+
+select,
+textarea,
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 150px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 15px;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EduGenie - AI Learning Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 EduGenie</h1>
+        <p>Your Gemini Powered Learning Assistant</p>
+
+        <select id="task">
+            <option value="qa">Ask Question (QnA)</option>
+            <option value="explain">Explain Concept</option>
+            <option value="quiz">Generate Quiz</option>
+            <option value="summarize">Summarize</option>
+            <option value="recommendations">Learning Path</option>
+        </select>
+
+        <textarea id="userInput" placeholder="Type here... Eg: What is Python? or Photosynthesis"></textarea>
+        
+        <button onclick="askGenie()">Ask EduGenie ✨</button>
+
+        <div id="result">Result will appear here da...</div>
+    </div>
+
+<script>
+async function askGenie() {
+    const task = document.getElementById("task").value;
+    const text = document.getElementById("userInput").value;
+    const resultDiv = document.getElementById("result");
+    
+    resultDiv.innerHTML = "Thinking da... 🤔";
+
+    let url = "";
+    let body = {};
+
+    if(task === "qa") { url = "/qa"; body = {question: text}; }
+    if(task === "explain") { url = "/explain"; body = {topic: text}; }
+    if(task === "quiz") { url = "/quiz"; body = {text: text}; }
+    if(task === "summarize") { url = "/summarize"; body = {text: text}; }
+    if(task === "recommendations") { url = "/learn/recommendations"; body = {topic: text}; }
+
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(body)
+    });
+
+    const data = await response.json();
+    resultDiv.innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+}
+</script>
+</body>
+</html>
